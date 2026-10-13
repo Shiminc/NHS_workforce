@@ -1,4 +1,4 @@
-import {colorScale} from './color-data.js' 
+import {colorScaleFurther} from './color-data.js' 
 
 export const drawTree = (root, descendants, leaves) => {
     const width = 1000;
@@ -45,8 +45,9 @@ export const drawTree = (root, descendants, leaves) => {
         .attr('class','tree-link')
         .attr('d',d=>linkGenerator(d))
         .attr('fill','none')
-        .attr('stroke',d=>colorScale(d.source))
+        .attr('stroke',d=>colorScaleFurther(d.source))
         .attr('stroke-opacity',0.6)
+        .attr('stroke-width',2)
 
     // add labels
     svg.selectAll('.label-tree')
@@ -70,5 +71,5 @@ export const drawTree = (root, descendants, leaves) => {
     .attr('cx',d=>d.y)
     .attr('cy',d=>d.x)
     .attr('r', 1)
-    .attr('fill',d=>colorScale(d.parent))      
+    .attr('fill',d=>colorScaleFurther(d.parent))      
 }

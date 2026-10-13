@@ -3,13 +3,6 @@ In this module, global variables are declared.
 """
 
 
-
-
-# GP practice level
-# SEE references Overall Definitions
-PATH_gp_practice = '/data/General Practice_June 2026 Practice Level_Detailed.csv'
-PATH_gp_practice_jupyter = '/../../data/General Practice_June 2026 Practice Level_Detailed.csv'
-PATH_imd = '/data/GP_imd_Oct_2025.csv'
 PATH_workforce = '/data/NHS_workforce.csv'
 PATH_geoscheme = '/data/UN_geoscheme.csv'
 PATH_nationality = '/data/FCDO_Geographical_Names_Index_July2026.csv'
