@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NHS workforce</title>
+	<link rel="stylesheet" type="text/css" href="./css/base.css">
+	<link rel="stylesheet" href="./css/logo.css">
+    <link rel="icon" href="./assets/favicon.PNG" type="image/x-icon" />
+</head>
+<body>
+	<div class = "grid-nav-container">
+        <div class = 'grid-logo' id ='logo' ></div>
+        <div class = 'grid-about'><a href='https://shiminc.github.io/vizard/about.html'>About</a></div>
+
+    </div>
+	<div class="normal-container">
+		<div class="title">Who works in NHS for our health?</div>
+		<div class="subtitle">Work in progress</div>
+		
+		<div class=" intro">
+
+			</div>
+			<div class="chart-container">
+		    <div id="sunburst-chart"></div>
+			</div>
+	<!-- Load javascripts -->
+	
+	<script src="./javascripts/d3.v7.js"></script>
+
+	<!-- <script type= 'module' src="./javascripts/transform-data.js"></script> -->
+	<!-- <script type= 'module' src="./javascripts/world-map.js"></script> -->
+
+	<script type= 'module' src="./javascripts/load-data.js"></script>
+
+<script type="module" src="./javascripts/logo/main.js"></script> 
+<script>
+        document.getElementById('logo').addEventListener('click', function(){
+            window.location.href ='https://shiminc.github.io/vizard'
+        })
+</script>
+</body>
+</html>

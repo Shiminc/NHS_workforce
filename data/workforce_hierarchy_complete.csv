@@ -1,0 +1,30 @@
+﻿child,parent,staff_numbers
+NHS Hospital and Community Health Services (HCHS) staff,,
+Professionally qualified clinical staff,NHS Hospital and Community Health Services (HCHS) staff,
+Support Staff,NHS Hospital and Community Health Services (HCHS) staff,
+HCHS doctors,Professionally qualified clinical staff,
+Non-doctor professionally qualified clinical staff,Professionally qualified clinical staff,
+Nurses & health visitors,Non-doctor professionally qualified clinical staff,371725
+Midwives,Non-doctor professionally qualified clinical staff,25532
+Ambulance staff,Non-doctor professionally qualified clinical staff,23147
+"Scientific, therapeutic & technical staff",Non-doctor professionally qualified clinical staff,182461
+Support to clinical staff,Support Staff,
+NHS infrastructure support,Support Staff,
+"Support to doctors, nurses & midwives",Support to clinical staff,288463
+Support to ambulance staff,Support to clinical staff,25386
+Support to ST&T staff,Support to clinical staff,88818
+Senior managers,NHS infrastructure support,13084
+Managers,NHS infrastructure support,25291
+Central functions,NHS infrastructure support,106577
+"Hotel, property & estates",NHS infrastructure support,66845
+Consultant,HCHS doctors,61451
+Associate Specialist,HCHS doctors,3010
+Specialty Doctor,HCHS doctors,10079
+Staff Grade,HCHS doctors,203
+Specialty Registrar,HCHS doctors,34911
+Core Training,HCHS doctors,25813
+Foundation Doctor Year 2,HCHS doctors,7583
+Foundation Doctor Year 1,HCHS doctors,8389
+Hospital Practitioner / Clinical Assistant,HCHS doctors,729
+Other HCHS Doctor Grades,HCHS doctors,769
+Unknown classification,NHS Hospital and Community Health Services (HCHS) staff,176
