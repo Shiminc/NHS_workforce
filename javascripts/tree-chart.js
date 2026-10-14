@@ -1,13 +1,13 @@
 import {colorScaleFurther} from './color-data.js' 
 
 export const drawTree = (root, descendants, leaves) => {
-    const width = 1000;
-    const height = 1000;
+    const width = 2000;
+    const height = 1600;
     const margin = {
         top: 200, 
-        right: 200,
+        right: 800,
         bottom: 200, 
-        left: 200
+        left: 400
     }
     const innerWidth = width - margin.right - margin.left;
     const innerHeight = height - margin.top - margin.bottom;
@@ -19,12 +19,12 @@ export const drawTree = (root, descendants, leaves) => {
     
     // dendogram
     const treeLayoutGenerator = d3.cluster()
-        .size([innerWidth, innerHeight])
+        .size([innerWidth, innerHeight/2])
     treeLayoutGenerator(root);
-    console.log('tree')
-    console.log(root)
-    console.log(root.links())
-    console.log(descendants)
+    // console.log('tree')
+    // console.log(root)
+    // console.log(root.links())
+    // console.log(descendants)
 
     const linkGenerator = d3.link(d3.curveBumpY)
     // for horizontal tree
@@ -58,10 +58,12 @@ export const drawTree = (root, descendants, leaves) => {
         .attr('y', d => d.x)
         .attr('text-anchor', d => d.children ? 'end':'start')
         .attr('alignment-baseline','middle')
-        // .attr('paint-order','stroke')
-        .attr('stroke-width',2)
-        .style('font-size','6px')
+        .style('font-size','16px')
         .text(d =>d.id)
+        // add white storke behind text so to cover the path the word is on
+        .attr('paint-order','stroke')
+        .attr('stroke','white')
+        .attr('stroke-width',5)
 
     // add nodes
     svg.selectAll('.node-tree')
@@ -71,5 +73,33 @@ export const drawTree = (root, descendants, leaves) => {
     .attr('cx',d=>d.y)
     .attr('cy',d=>d.x)
     .attr('r', 1)
-    .attr('fill',d=>colorScaleFurther(d.parent))      
+    .attr('fill',d=>colorScaleFurther(d.parent)) 
+    
+    console.log(leaves)
+    console.log(d3.max(leaves.map(d=>d.data.staff_numbers)))
+    const xScale = d3.scaleLinear()
+        .domain([0,d3.max(leaves.map(d=>d.data.staff_numbers))])
+        .range([0,innerWidth/2]);
+    // add bars
+    svg.selectAll('.leave-bar')
+    .data(leaves)
+    .join('rect')
+    .attr('class','.leave-bar')
+    .attr('x',d=>d.y + 300)
+    .attr('y',d=>d.x - 10)
+    .attr('width', d => xScale(d.data.staff_numbers))
+    .attr('height', '20px')
+    .attr('fill',d=>colorScaleFurther(d.data.parent) )
+
+    // add label
+    svg.selectAll('.leave-bar')
+    .data(leaves)
+    .join('text')
+    .attr('class','.bar-value')
+    .attr('x',d=>d.y + 300 + xScale(d.data.staff_numbers) + 20)
+    .attr('y',d=>d.x +5)
+    .text(d=>d.data.staff_numbers) 
+    .style('font-size','16px')
+    .attr('alignment-baseline','middle')
+
 }

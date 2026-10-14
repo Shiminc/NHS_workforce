@@ -5,7 +5,7 @@ import time
 import json
 import pandas as pd
 
-from variables import PATH_workforce, PATH_nationality, PATH_geoscheme
+from utils.variables import PATH_workforce, PATH_nationality, PATH_geoscheme
 
 def correct_nationality_area(data):
     #  congo could be drc or congo, but we deems as congo here - 258
