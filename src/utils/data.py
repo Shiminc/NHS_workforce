@@ -129,12 +129,13 @@ def read_workforce_data(path = PATH_workforce):
 
     data.rename(columns={'All staff groups': 'All staff total',
                          'All staff groups.1':'Professional qualified total',
-                         'All staff groups.2':'Support staff total',
+                         'All staff groups.2':'Support to clinical staff total',
                          'All staff groups.3':'Infrastructure support total'},
                          inplace=True
                          )
     data['Non doctor clinical staff total']= data['Professional qualified total'] - data['HCHS doctors - All grades']
     data['Non doctor clinical staff total']= data['Non doctor clinical staff total'].round(2)
+    data['Support staff total']= data['Support to clinical staff total']+data['Infrastructure support total']
     return data
 
 def match_nationality_country(workforce, nationality):
