@@ -1,8 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import time
-import json
+import numpy as np
 import pandas as pd
 import altair as alt
 from utils.data import load_full_data
@@ -32,10 +31,10 @@ VARIABLES_SUPPORT = [
        'Hotel, property & estates'
        ]
 
-def multiple_bar_chart(data,variables):
+def multiple_bar_chart(data,category,variables):
     chart_list=[]
     for variable in variables:
-        chart_list.append(bar_chart(data,variable))
+        chart_list.append(bar_chart(data,category,variable))
     chart = alt.vconcat(*chart_list)
     return chart
 
@@ -43,14 +42,14 @@ def create_title(data, variable):
     uk_number  = data[variable].loc[data['Country or Area']=='United Kingdom']
     the_rest = data[variable].loc[data['Country or Area']!='United Kingdom']
     sum_number = uk_number.sum() + the_rest.sum()
-    title = f'From UK: {uk_number.sum()} ({uk_number.sum()/sum_number:.2%}), The rest: {the_rest.sum()} ({the_rest.sum()/sum_number:.2%})'
+    title = f'From UK: {uk_number.sum():.2f} ({uk_number.sum()/sum_number:.2%}), The rest: {the_rest.sum():.2f} ({the_rest.sum()/sum_number:.2%})'
     return title
 
-def bar_chart(data,variable):
+def bar_chart(data,category,variable):
     title = create_title(data,variable)
-    data = data[data['Country or Area']!='United Kingdom']
+    data = data[data[category]!='United Kingdom']
     chart = alt.Chart(data,title=alt.Title(title,anchor='start')).mark_bar().encode(
-        x = alt.X('Country or Area').sort('-y'),
+        x = alt.X(category).sort('-y'),
         y = alt.Y(variable),
         color = alt.Color('Continental region').legend(orient="left") ,
         tooltip = alt.Tooltip([variable])
@@ -62,9 +61,15 @@ def bar_chart(data,variable):
 def main():
     set_up_altair_browser()
     data = load_full_data()
-    multiple_bar_chart(data,VARIABLES_TOTAL).show()
-    multiple_bar_chart(data,VARIABLES_DOCTORS).show()
-    multiple_bar_chart(data,VARIABLES_CLINICAL).show()
-    multiple_bar_chart(data,VARIABLES_SUPPORT).show()
+    # see the log scale
+    # data.iloc[:,4:-5] = data.iloc[:,4:-5].transform(np.log)
+    # data.replace([np.inf, -np.inf], 0, inplace=True)
+    category='Country or Area'
+    category='Geographical subregion'
+    category='Continental region'
+    multiple_bar_chart(data,category,VARIABLES_TOTAL).show()
+    multiple_bar_chart(data,category,VARIABLES_DOCTORS).show()
+    multiple_bar_chart(data,category,VARIABLES_CLINICAL).show()
+    multiple_bar_chart(data,category,VARIABLES_SUPPORT).show()
     print('finish')
 main()
