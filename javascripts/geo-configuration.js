@@ -30,7 +30,7 @@ export function draw_graticules(svg) {
 
 export function showToolTip(e,d){
         const centroid = geoPathGenerator.centroid(d)
-        console.log(centroid)
+        // console.log(centroid)
         // append the rect first so the rect background won't obscure the text
         let rectBackground=d3.select('#svg-map').append('rect')
 
@@ -74,3 +74,17 @@ export function hideToolTip(e,d) {
     d3.select("#toolTip-background")
     .remove();
     }
+
+const staff_array = ['HCHS doctors - All grades',
+             'Non doctor clinical staff total','Support to clinical staff total','Infrastructure support total']
+    
+export function showBreakDown(e,d){
+    const centroid = geoPathGenerator.centroid(d)
+    let data = {}
+        staff_array.forEach((key) => 
+            data[key] = (d[key])
+        )
+    
+    console.log(data)
+    
+}

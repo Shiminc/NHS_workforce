@@ -70,8 +70,8 @@ def main():
     # data.iloc[:,4:-5] = data.iloc[:,4:-5].transform(np.log)
     # data.replace([np.inf, -np.inf], 0, inplace=True)
     category='Country or Area'
-    category='Geographical subregion'
-    category='Continental region'
+    # category='Geographical subregion'
+    # category='Continental region'
     multiple_bar_chart(data,category,VARIABLES_TOTAL).show()
     multiple_bar_chart(data,category,VARIABLES_DOCTORS).show()
     multiple_bar_chart(data,category,VARIABLES_CLINICAL).show()

@@ -1,4 +1,4 @@
-import {width, height,geoPathGenerator,draw_graticules,showToolTip, hideToolTip} from './geo-configuration.js'
+import {width, height,geoPathGenerator,draw_graticules,showToolTip, hideToolTip,showBreakDown} from './geo-configuration.js'
 import {create_colorScaleQuantile, create_colorScaleLog} from './color-choropleth.js'
 
 export const drawMap = (geodata) =>{
@@ -33,4 +33,5 @@ export const drawMap = (geodata) =>{
         .attr('stroke-opacity',0.4)
         .on('mouseenter',showToolTip)
         .on('mouseleave',hideToolTip)
+        .on('dblclick',showBreakDown)
 }
