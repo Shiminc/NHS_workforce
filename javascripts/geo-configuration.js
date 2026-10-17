@@ -1,7 +1,7 @@
 import {colorScaleFurther } from './color-data.js' 
 
-export const width = 1230*2
-export const height = 620*2
+export const width = 1230
+export const height = 620
 
 export const projection = d3.geoEqualEarth()
         .translate([width/2,height/2])
