@@ -57,6 +57,9 @@ def bar_chart(data,category,variable):
     )
     return chart
 
+def report_quantile(data):
+    quantile_list = np.array(range(1,10))/10
+    return data['All staff total'].quantile(quantile_list)
 
 def main():
     set_up_altair_browser()
