@@ -16,13 +16,13 @@ export const colorScale = d3.scaleOrdinal()
 
 export const roleColorFurther = [
     {'role': 'NHS Hospital and Community Health Services (HCHS) staff','color':'black'},
-    {'role': 'Support Staff','color':'#ffa600'},
+    {'role': 'Support Staff','color':'orange'},
     {'role':'Professionally qualified clinical staff','color': '#c7c7c7'},
     {'role':'Non-doctor professionally qualified clinical staff','color': '#0083c0'},
     {'role':'HCHS doctors','color': '#4d6b03'},
     {'role':'Support to clinical staff','color': '#7a4f99'},
     {'role':'NHS infrastructure support','color': '#ef527a'},	
-    {'role':'Unknown classification','color': '#ffa600'},
+    {'role':'Unknown classification','color': '#black'},
 ]
 
 export const colorScaleFurther = d3.scaleOrdinal()
