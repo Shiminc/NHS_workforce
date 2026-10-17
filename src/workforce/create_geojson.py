@@ -16,7 +16,9 @@ def add_variables_to_geo(geodf,data):
         if area['id'] in existing_id_list:
            for var in vars_to_add:
                area[var]=data.loc[data['id_code']==area['id'],var].values[0]
-
+        else:
+           for var in vars_to_add:
+               area[var]=0
         #    area['Geographical subregion']=data.loc[data['id_code']==area['id'],'Geographical subregion'].values[0]
 
     return geodf

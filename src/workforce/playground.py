@@ -58,12 +58,14 @@ def bar_chart(data,category,variable):
     return chart
 
 def report_quantile(data):
+    data = data[data['Country or Area']!='United Kingdom']
     quantile_list = np.array(range(1,10))/10
     return data['All staff total'].quantile(quantile_list)
 
 def main():
     set_up_altair_browser()
     data = load_full_data()
+    quantile = report_quantile(data)
     # see the log scale
     # data.iloc[:,4:-5] = data.iloc[:,4:-5].transform(np.log)
     # data.replace([np.inf, -np.inf], 0, inplace=True)

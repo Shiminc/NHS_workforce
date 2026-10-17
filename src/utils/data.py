@@ -8,11 +8,11 @@ import pandas as pd
 from utils.variables import PATH_workforce, PATH_nationality, PATH_geoscheme
 
 def correct_nationality_area(data):
-    #  congo could be drc or congo, but we deems as congo here - 258
     # Korean could be south or north korean, likely to drop afterwards
     # channel islands - 2 island 4.92 FTE. not sure how to draw yet
     # Netherlands Antilles - 8.57
     # Korean 25.52
+    # Congo, could be drc or congo, - 258 likely to exclude
 
     correction_list =   pd.DataFrame([{'Nationality':'Anguillan', 'id_code': 'AI', 'Name': 'Anguilla', 'Territory':'British'},
     {'Nationality':'Antiguan', 'id_code': 'AG', 'Name': 'Antigua and Barbuda'},
@@ -28,7 +28,7 @@ def correct_nationality_area(data):
     {'Nationality':'Caymanian', 'id_code': 'KY', 'Name': 'Cayman Islands', 'Territory':'British'},
     {'Nationality':'Channel Islander', 'id_code': 'GG/JE', 'Name':'Channel Islands', 'Territory':'Kind of British'},
     {'Nationality':'Cocos Islander', 'id_code': 'CC', 'Name': 'Cocos Islands', 'Territory':'Australian'},
-    {'Nationality':'Congolese', 'id_code': 'CD', 'Name': 'Congo'},
+    {'Nationality':'Congolese', 'id_code': 'CD', 'Name': 'The Republic of the Congo'},
     {'Nationality':'Dutch Antillean', 'id_code': 'NONE', 'Name': 'Netherlands Antilles', 'Territory':'Dutch'},
     {'Nationality':'Ecuadorian', 'id_code': 'EC', 'Name': 'Ecuador'},
     {'Nationality':'Emirati', 'id_code': 'AE', 'Name': 'United Arab Emirates'},
@@ -112,6 +112,7 @@ def read_workforce_data(path = PATH_workforce):
     # combined unknown and unknown rest of the world to one unknown
     unknown = data[data['Nationality'].isin(['Unknown - Rest of World','Unknown'])]
     data = data[~data['Nationality'].isin(['Unknown - Rest of World','Unknown'])]
+    data = data[~data['Nationality'].isin(['Congolese','Korean','Netherlands Antilles'])]
     unknown_sum = unknown.sum()
     unknown_sum['Data \nmonth'] = 'Jun-26'
     unknown_sum['Data type'] = 'FTE'
