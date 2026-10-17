@@ -75,16 +75,73 @@ export function hideToolTip(e,d) {
     .remove();
     }
 
-const staff_array = ['HCHS doctors - All grades',
-             'Non doctor clinical staff total','Support to clinical staff total','Infrastructure support total']
-    
+// const staff_array = ['HCHS doctors - All grades',
+//              'Non doctor clinical staff total','Support to clinical staff total','Infrastructure support total']
+
+
 export function showBreakDown(e,d){
     const centroid = geoPathGenerator.centroid(d)
-    let data = {}
-        staff_array.forEach((key) => 
-            data[key] = (d[key])
-        )
+    let data = {'name':'NHS staff',
+        'children':[
+            {'name':'Professionally qualified clinical staff',
+                'children':[{'name':'HCHS doctors',
+                    'children':[
+                        {'name':'Consultant','staff number':d['HCHS doctors - Consultant']},
+                        {'name':'Specialty Registrar','staff number':d['HCHS doctors - Specialty Registrar']},
+                        {'name':'Core Training','staff number':d['HCHS doctors - Core Training']},
+                        {'name':'Specialty Doctor','staff number':d['HCHS doctors - Specialty Doctor']},
+                        {'name':'Foundation Doctor Year 2','staff number':d['HCHS doctors - Foundation Doctor Year 2']},
+                        {'name':'Foundation Doctor Year 1','staff number':d['HCHS doctors - Foundation Doctor Year 1']},
+                        {'name':'Associate Specialist','staff number':d['HCHS doctors - Associate Specialist']},
+                        {'name':'Staff Grade','staff number':d['HCHS doctors - Staff Grade']},
+                        {'name':'Hospital Practitioner/Clinical Assistant','staff number':d['Hospital Practitioner / Clinical Assistant']},
+                        {'name':'Other HCHS Doctor Grades','staff number':d['HCHS doctors - Other HCHS Doctor Grades']},
+
+
+                    ]
+                },
+                    {'name':'Non-doctor professionally qualified clinical staff',
+                        'children':[
+                            {'name':'Nurses & health visitors', 'staff number':d['Nurses & health visitors']},
+                            {'name':'Midwives','staff number':d['Midwives']},
+                            {'name':'Ambulance staff','staff number':d['Ambulance staff']},
+                            {'name':'Scientific, therapeutic & technical staff','staff number':d['Scientific, therapeutic & technical staff']}
+                        ]
+                    }
+                ]
+            },
+            {'name':'Support staff',
+                'children':
+                    [{'name': 'Support to clinical staff',
+                        'children':[
+                            {'name':'Support to doctors, nurses & midwives','staff number':d['Support to doctors, nurses & midwives']},
+                            {'name':'Support to ambulance staff','staff number':d['Support to ambulance staff']},
+                            {'name':'Support to ST&T staff','staff number':d['Support to ST&T staff']}
+                        ]},
+                     {'name': 'NHS Infrastructure support',
+                        'children':[
+                            {'name':'Senior managers','staff number':d['Senior managers']},
+                            {'name':'Managers','staff number':d['Managers']},
+                            {'name':'Central functions','staff number':d['Central functions']},
+                            {'name':'Hotel, property & estates','staff number':d['Hotel, property & estates']},
+
+                        ]
+                     }
+                    ]
+                
+            },
+                
+            {'name':' Unknown classification', 'staff number': d['Unknown classification']}
+
+        ]}
+
+    const root =d3.hierarchy(data);
+    const descendants = root.descendants();
+    const leaves = root.leaves(); 
+    console.log(root)
+
+    //         data[key] = (d[key])
+    //     )
     
-    console.log(data)
     
 }
