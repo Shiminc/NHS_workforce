@@ -1,4 +1,5 @@
-import {width, height,geoPathGenerator,draw_graticules,showToolTip, hideToolTip,showBreakDown} from './geo-configuration.js'
+import {width, height,geoPathGenerator,draw_graticules,showToolTip, hideToolTip} from './geo-configuration.js'
+import {showBreakDown} from './sunburst-tooltip.js'
 import {create_colorScaleQuantile, create_colorScaleLog} from './color-choropleth.js'
 
 export const drawMap = (geodata) =>{

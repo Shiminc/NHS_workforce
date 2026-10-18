@@ -28,3 +28,17 @@ export const roleColorFurther = [
 export const colorScaleFurther = d3.scaleOrdinal()
     .domain(roleColorFurther.map(d=>d.role))
     .range(roleColorFurther.map(d=>d.color))
+
+export const roleColorSunburstTooltip = [
+    {'role': 'Support staff','color':'orange'},
+    {'role':'Clinical staff','color': '#c7c7c7'},
+    {'role':'Other clinical staff','color': '#0083c0'},
+    {'role':'Doctors','color': '#4d6b03'},
+    {'role':'Clinical support','color': '#7a4f99'},
+    {'role':'Infrastructure support','color': '#ef527a'},	
+    {'role':'Unknown classification','color': '#black'},
+]
+
+export const colorScaleSunburstTooltip = d3.scaleOrdinal()
+    .domain(roleColorSunburstTooltip.map(d=>d.role))
+    .range(roleColorSunburstTooltip.map(d=>d.color))
