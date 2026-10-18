@@ -6,26 +6,10 @@ import {colorScaleSunburstTooltip } from './color-data.js'
 //     ['Clinical staff','Support staff','Doctors','Clinical support','Infrastructure support', 'Other clinical staff'])
 
 function removeBreakDown(e,d){
-    d3.select("#sunburst-chart")
+    d3.select("#sunburst-tooltip")
     .remove();
 
     }
-
-function showFurtherInfo(e,d){
-    const textContainer = d3.select('#svg-map').append('text')
-        .attr('id','BreakdownTooltip-text')
-        .attr('x', e.clientX)
-        .attr('y', e.clientY)
-        .attr('font-size',12)
-        .attr('font-family', 'sans-serif')
-
-        textContainer.append('tspan')
-        .attr('class','area')
-        .attr('dominant-baseline','hanging')
-        // .text(d['Country or Area'])
-        .text(d.data.name)
-    console.log(e)
-}
 
 export function showBreakDown(e,d){
     const centroid = geoPathGenerator.centroid(d)
@@ -115,19 +99,10 @@ export function showBreakDown(e,d){
 
 
 
-    const sunburst = d3.select('#svg-map').append('g')
+    const sunburst = d3.select('#svg-map-g').append('g')
         .attr('transform',`translate(${centroid[0]},${centroid[1]})`)
-        .attr("id",'sunburst-chart')
+        .attr("id",'sunburst-tooltip')
         .on('mouseleave',removeBreakDown)
-
-    // create a white rect as tooltip background
-    // sunburst.append('rect')
-    // .attr('class','sunburst-background')
-    // .attr('x',`${-popup_width/2}`)  
-    // .attr('y',`${-popup_height/2}`)
-    // .attr('width',popup_width)
-    // .attr('height',popup_height)
-    // .attr('fill','white')
 
     console.log(root_graph.descendants())
     sunburst.selectAll('path')  // <-- 1
@@ -146,7 +121,6 @@ export function showBreakDown(e,d){
                         return "white"
                 }
     })
-    .on('mouseenter',showFurtherInfo)
 
     const label = sunburst.selectAll("text")
     .data(root_graph.descendants())
@@ -164,13 +138,15 @@ export function showBreakDown(e,d){
     .attr('text-rendering','optimizeLegibility')
     .attr('text-anchor','middle')
     .attr('dominant-baseline','middle')
-    .attr('fill','black')
+    .attr('fill',d=>{
+        if (d.depth >0 & d.depth <3) return 'white'
+        else return 'black'})
     .attr('font-family','sans-serif')
     .attr('font-size','6px')
 
     label.append('tspan')
     .attr('opacity',d=>{
-        if (d.depth <3) return 1
+        if (d.depth <4) return 1
         else return 0})
     .text(d=>{
         if (d.depth == 0) return country

@@ -1,4 +1,4 @@
-import {width, height,geoPathGenerator,draw_graticules,showToolTip, hideToolTip} from './geo-configuration.js'
+import {width, height, margin_top, margin_bottom, geoPathGenerator,draw_graticules,showToolTip, hideToolTip} from './geo-configuration.js'
 import {showBreakDown} from './sunburst-tooltip.js'
 import {create_colorScaleQuantile, create_colorScaleLog} from './color-choropleth.js'
 
@@ -8,8 +8,11 @@ export const drawMap = (geodata) =>{
     const svg = d3.select("#map-chart")
         .append('svg')
         .attr('id','svg-map')
-        .attr('viewBox',`0 0 ${width} ${height}`)
-
+        .attr('viewBox',`0 0 ${width} ${height + margin_top + margin_bottom}`)
+        .append('g')
+        .attr('transform',`translate(0,${margin_top})`)
+        .attr('id','svg-map-g')
+        
     draw_graticules(svg)
     
     svg.selectAll('.country-path')

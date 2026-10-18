@@ -1,12 +1,25 @@
-#tree-chart,
-#sunburst-chart {
-    width:60%;
-
+#tree-chart{
+    width:80%;
 }
+#sunburst-chart {
+    width:50%;
+}
+
+
+/* .plot-grid-container{
+    margin: 200px;
+    display: grid;
+    grid-template-columns: 1500px 800px;
+    row-gap: 0%;
+    column-gap:1%;
+    /* justify-content: center; */
+
+
 .chart-container {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 

@@ -101,7 +101,7 @@ export const drawSunburst = (root) => {
     .attr('dominant-baseline','middle')
     .attr('fill','black')
     .attr('font-family','sans-serif')
-    .attr('font-size','1.8px')
+    .attr('font-size','2.5px')
     .text(d=>{
       if (d.id == 'Hospital Practitioner / Clinical Assistant' ||d.id == 'Other HCHS Doctor Grades'||d.id == 'Staff Grade'||d.id=='Unknown classification') return '';
       else if (d.value<9000 & d.value>3000) return `${d.id}: ${(d.value/d.parent.value * 100).toFixed(1)}%`

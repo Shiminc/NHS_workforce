@@ -31,7 +31,7 @@ export const colorScaleFurther = d3.scaleOrdinal()
 
 export const roleColorSunburstTooltip = [
     {'role': 'Support staff','color':'orange'},
-    {'role':'Clinical staff','color': '#c7c7c7'},
+    {'role':'Clinical staff','color': '#434141'},
     {'role':'Other clinical staff','color': '#0083c0'},
     {'role':'Doctors','color': '#4d6b03'},
     {'role':'Clinical support','color': '#7a4f99'},

@@ -1,6 +1,8 @@
 
 export const width = 1230*0.8
 export const height = 620*0.8
+export const margin_top = 200
+export const margin_bottom = 200
 
 export const projection = d3.geoEqualEarth()
         .translate([width/2,height/2])
@@ -33,13 +35,14 @@ export function showToolTip(e,d){
         const centroid = geoPathGenerator.centroid(d)
         // console.log(centroid)
         // append the rect first so the rect background won't obscure the text
-        let rectBackground=d3.select('#svg-map').append('rect')
+        let rectBackground=d3.select('#svg-map-g').append('rect')
+        .attr('rx','0.3%')
 
-        const textContainer = d3.select('#svg-map').append('text')
+        const textContainer = d3.select('#svg-map-g').append('text')
         .attr('id','toolTip-text')
         .attr('x',centroid[0])
-        .attr('y',centroid[1])
-        .attr('font-size',12)
+        .attr('y',centroid[1] )
+        .attr('font-size',10)
         .attr('font-family', 'sans-serif')
 
         textContainer.append('tspan')
@@ -59,11 +62,11 @@ export function showToolTip(e,d){
         let box = text.getBBox();
         console.log('box',box.width)
         rectBackground.attr('id','toolTip-background')
-        .attr('x',centroid[0]-4)
-        .attr('y',centroid[1]-4)
-        // .attr('transform',`translate (${r}, ${-r})`)
-        .attr("width", box.width + 8)
-        .attr("height", box.height + 8)
+        .attr('x',centroid[0]-3)
+        .attr('y',centroid[1]-3)
+        // .attr('transform',`translate (${-4}, ${margin_top-4})`)
+        .attr("width", box.width + 6)
+        .attr("height", box.height + 6)
         .style("fill","white")
         .attr('fill-opacity',1)
 
