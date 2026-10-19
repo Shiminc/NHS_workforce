@@ -4,7 +4,8 @@ import {create_colorScaleQuantile, create_colorScaleLog} from './color-choroplet
 
 export const drawMap = (geodata) =>{
     const colorScaleQuantile = create_colorScaleQuantile(geodata)
-    const [colorScalelog, scaleLog,countryColorScale] = create_colorScaleLog(geodata)
+    const [colorScalelog, scaleLog,countryColorScale,min_color,max_color,median_color,min_value,max_value,median_value] = create_colorScaleLog(geodata)
+    console.log(min_value,max_value,median_value)
     const svg = d3.select("#map-chart")
         .append('svg')
         .attr('id','svg-map')
@@ -15,6 +16,44 @@ export const drawMap = (geodata) =>{
         
     draw_graticules(svg)
     
+    // legend
+    const legend = d3.select('#svg-map').append('foreignObject')
+        .attr('x',margin_top)
+        .attr('y',height + margin_top*1.2)
+        .attr('width', width)
+        .attr('height', 150)
+
+    legend.append('xhtml:div')
+        .attr('class','legend-label')
+        .style('width', `${width/3}px`)
+        .style('height', '20px')
+        .text('Number of staff')
+
+    legend.append('xhtml:div')
+        .attr('id','legend-color')
+        .style('width', `${width/3}px`)
+        .style('height', '20px')
+        .style('background',`linear-gradient(to right, white 0%, ${median_color} 50%, ${max_color} 100%)`)
+
+    const legend_label= legend.append('xhtml:div')
+        .attr('class','legend-label')
+        .style('height', '20px')
+        .style('width', '100px')
+
+    legend_label.append('span')
+        .text('0')
+
+    legend_label.append('span')
+        .style('position','absolute')
+        .style('left',`${width/6}px`)
+        .text(`${median_value.toFixed(0)}`)
+
+    legend_label.append('span')
+        .style('position','absolute')
+        .style('left',`${width/3}px`)
+        .text(`${max_value.toFixed(0)}`)
+
+
     svg.selectAll('.country-path')
     .data(geodata.features)
     .join('path')
@@ -38,4 +77,6 @@ export const drawMap = (geodata) =>{
         .on('mouseenter',showToolTip)
         .on('mouseleave',hideToolTip)
         .on('dblclick',showBreakDown)
+
+
 }

@@ -73,8 +73,8 @@ export function showBreakDown(e,d){
     console.log('root')
     console.log(root)
 
-    const popup_width = 300;
-    const popup_height = 300;
+    const popup_width = 200;
+    const popup_height = 200;
     const radius = Math.min(popup_width,popup_height) / 2;
 
 
@@ -111,6 +111,8 @@ export function showBreakDown(e,d){
     .attr("d", arcGenerator) 
     .attr('fill',d=>{
                 switch (d.depth){
+                    case 0:
+                        return 'black'
                     case 1:
                       return colorScaleSunburstTooltip(d.data.name)
                     case 2:
@@ -139,7 +141,7 @@ export function showBreakDown(e,d){
     .attr('text-anchor','middle')
     .attr('dominant-baseline','middle')
     .attr('fill',d=>{
-        if (d.depth >0 & d.depth <3) return 'white'
+        if (d.depth >=0 & d.depth <3) return 'white'
         else return 'black'})
     .attr('font-family','sans-serif')
     .attr('font-size','6px')

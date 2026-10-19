@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin: 0px;
 }
 
 
@@ -63,7 +63,11 @@ body{
     line-height: 1.5;
 }
 
+.legend-label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px; 
 
+}
 ul {
     margin: 0;
     margin-top:5%;
@@ -75,9 +79,8 @@ li {
     margin-inline-start: 0;
 }
 
-.legend-text,
-.player-circle {
-    cursor:pointer;
+#legend-colors {
+    z-index: -1;
 }
 
 

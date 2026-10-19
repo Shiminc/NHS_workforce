@@ -1,7 +1,7 @@
 
 export const width = 1230*0.8
 export const height = 620*0.8
-export const margin_top = 200
+export const margin_top = 200/2
 export const margin_bottom = 200
 
 export const projection = d3.geoEqualEarth()
@@ -60,7 +60,6 @@ export function showToolTip(e,d){
             //get the dimension of the rect-background based on the space text takes on
         let text = this.parentNode.querySelector('text');
         let box = text.getBBox();
-        console.log('box',box.width)
         rectBackground.attr('id','toolTip-background')
         .attr('x',centroid[0]-3)
         .attr('y',centroid[1]-3)
