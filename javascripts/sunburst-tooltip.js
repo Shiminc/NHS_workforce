@@ -103,6 +103,7 @@ export function showBreakDown(e,d){
         .attr('transform',`translate(${centroid[0]},${centroid[1]})`)
         .attr("id",'sunburst-tooltip')
         .on('mouseleave',removeBreakDown)
+        .on('dblclick',removeBreakDown)
 
     console.log(root_graph.descendants())
     sunburst.selectAll('path')  // <-- 1

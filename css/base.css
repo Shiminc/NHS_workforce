@@ -84,3 +84,6 @@ li {
 }
 
 
+#map-chart {
+    overflow: hidden;
+}

@@ -31,50 +31,43 @@ VARIABLES_SUPPORT = [
        'Hotel, property & estates'
        ]
 
-def multiple_bar_chart(data,category,variables):
-    chart_list=[]
-    for variable in variables:
-        chart_list.append(bar_chart(data,category,variable))
-    chart = alt.vconcat(*chart_list)
-    return chart
-
-def create_title(data, variable):
-    uk_number  = data[variable].loc[data['Country or Area']=='United Kingdom']
-    the_rest = data[variable].loc[data['Country or Area']!='United Kingdom']
-    sum_number = uk_number.sum() + the_rest.sum()
-    title = f'From UK: {uk_number.sum():.2f} ({uk_number.sum()/sum_number:.2%}), The rest: {the_rest.sum():.2f} ({the_rest.sum()/sum_number:.2%})'
-    return title
-
-def bar_chart(data,category,variable):
-    title = create_title(data,variable)
-    data = data[data[category]!='United Kingdom']
-    chart = alt.Chart(data,title=alt.Title(title,anchor='start')).mark_bar().encode(
-        x = alt.X(category).sort('-y'),
-        y = alt.Y(variable),
-        color = alt.Color('Continental region').legend(orient="left") ,
-        tooltip = alt.Tooltip([variable])
+def pie_chart(data,variable):
+    title=variable
+    # title = create_title(data,variable)
+    df = data[['Country or Area', variable]]
+    df.sort_values(by=variable, ascending = False,inplace=True)
+    
+    # data = data[data[category]!='United Kingdom']
+    chart = alt.Chart(df,title=alt.Title(title,anchor='start')).mark_arc().encode(
+        theta=alt.Theta(field=variable, type="quantitative"),
+        color = alt.Color('Country or Area').legend(orient="left") ,
+        order = alt.Order(variable,sort='descending'),
+        tooltip = alt.Tooltip(['Country or Area', variable])
 
     )
     return chart
 
-def report_quantile(data):
-    data = data[data['Country or Area']!='United Kingdom']
-    quantile_list = np.array(range(1,10))/10
-    return data['All staff total'].quantile(quantile_list)
+def multiple_pie_chart(data,variables):
+    chart_list=[]
+    for variable in variables:
+        chart_list.append(pie_chart(data,variable))
+    chart = alt.vconcat(*chart_list)
+    return chart
+
+def calculate_percentage(data,VARIABLES_TOTAL):
+    df = data[VARIABLES_TOTAL]
+    df.set_index(data['Country or Area'], inplace=True)
+
+    for variable in VARIABLES_TOTAL:
+        total = data[variable].sum()
+        df[variable]=df[variable]/total
+
+    return df
 
 def main():
     set_up_altair_browser()
     data = load_full_data()
-    quantile = report_quantile(data)
-    # see the log scale
-    # data.iloc[:,4:-5] = data.iloc[:,4:-5].transform(np.log)
-    # data.replace([np.inf, -np.inf], 0, inplace=True)
-    category='Country or Area'
-    # category='Geographical subregion'
-    # category='Continental region'
-    multiple_bar_chart(data,category,VARIABLES_TOTAL).show()
-    multiple_bar_chart(data,category,VARIABLES_DOCTORS).show()
-    multiple_bar_chart(data,category,VARIABLES_CLINICAL).show()
-    multiple_bar_chart(data,category,VARIABLES_SUPPORT).show()
+    multiple_pie_chart(data,VARIABLES_TOTAL).show()
+    df = calculate_percentage(data,VARIABLES_TOTAL)
     print('finish')
 main()

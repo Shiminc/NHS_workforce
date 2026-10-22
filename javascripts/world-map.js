@@ -4,7 +4,7 @@ import {create_colorScaleQuantile, create_colorScaleLog} from './color-choroplet
 
 export const drawMap = (geodata) =>{
     const colorScaleQuantile = create_colorScaleQuantile(geodata)
-    const [colorScalelog, scaleLog,countryColorScale,min_color,max_color,median_color,min_value,max_value,median_value] = create_colorScaleLog(geodata)
+    const [colorScalelog, scaleLog,countryColorScale,min_color,max_color,median_color,min_value,max_value,median_value,twentyfive_value,seventyfive_value,twentyfive_color, seventyfive_color] = create_colorScaleLog(geodata)
     console.log(min_value,max_value,median_value)
     const svg = d3.select("#map-chart")
         .append('svg')
@@ -33,7 +33,7 @@ export const drawMap = (geodata) =>{
         .attr('id','legend-color')
         .style('width', `${width/3}px`)
         .style('height', '20px')
-        .style('background',`linear-gradient(to right, white 0%, ${median_color} 50%, ${max_color} 100%)`)
+        .style('background',`linear-gradient(to right, white 0%, ${twentyfive_color} 25%, ${median_color} 50%, ${seventyfive_color} 75%, ${max_color} 100%)`)
 
     const legend_label= legend.append('xhtml:div')
         .attr('class','legend-label')
@@ -43,10 +43,22 @@ export const drawMap = (geodata) =>{
     legend_label.append('span')
         .text('0')
 
+
+    legend_label.append('span')
+        .style('position','absolute')
+        .style('left',`${(width/6)/2}px`)
+        .text(`${twentyfive_value.toFixed(0)}`)
+
     legend_label.append('span')
         .style('position','absolute')
         .style('left',`${width/6}px`)
         .text(`${median_value.toFixed(0)}`)
+
+
+    legend_label.append('span')
+        .style('position','absolute')
+        .style('left',`${(width/6)/2*3}px`)
+        .text(`${seventyfive_value.toFixed(0)}`)
 
     legend_label.append('span')
         .style('position','absolute')
@@ -79,4 +91,14 @@ export const drawMap = (geodata) =>{
         .on('dblclick',showBreakDown)
 
 
+        // const zoomHandler = d3.zoom()
+        // .scaleExtent([1,3])
+        // .translateExtent([[-width/2,-height/2],
+        // [3*width/2,3*height/2]])
+        // .on('zoom',(e) =>{
+        //     console.log(e)
+        //     svg.attr('transform',e.transform)
+        // })
+        // d3.select("#map-chart")
+        // .call(zoomHandler)
 }

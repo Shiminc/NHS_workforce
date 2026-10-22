@@ -15,6 +15,8 @@ export function create_colorScaleLog(geodata){
     const median_value = d3.median(geodata_exclude.map(d=>d['All staff total']))
     const seventyfive_value = d3.quantile(geodata_exclude.map(d=>d['All staff total']),0.75)
     console.log(seventyfive_value)
+    const twentyfive_value = d3.quantile(geodata_exclude.map(d=>d['All staff total']),0.25)
+    console.log(twentyfive_value)
     const scaleLog = d3.scaleLog().domain([min_value,max_value])
 
     const countryColorScale = d3.scaleSequential(d3.interpolateBlues)
@@ -26,7 +28,9 @@ export function create_colorScaleLog(geodata){
     const min_color = colorScalelog(scaleLog(min_value))
     const max_color = colorScalelog(scaleLog(max_value))
     const median_color = colorScalelog(scaleLog(median_value))
+    const twentyfive_color = colorScalelog(scaleLog(twentyfive_value))
+    const seventyfive_color = colorScalelog(scaleLog(seventyfive_value))
 
-    return [colorScalelog,scaleLog,countryColorScale,min_color,max_color,median_color,min_value,max_value,median_value]
+    return [colorScalelog,scaleLog,countryColorScale,min_color,max_color,median_color,min_value,max_value,median_value,twentyfive_value,seventyfive_value,twentyfive_color, seventyfive_color]
 } 
 
