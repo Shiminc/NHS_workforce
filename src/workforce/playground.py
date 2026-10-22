@@ -31,13 +31,22 @@ VARIABLES_SUPPORT = [
        'Hotel, property & estates'
        ]
 
+def reduce_data(data,variable):
+    df = data[['Country or Area', variable]]
+    df.sort_values(by=variable, ascending = False,inplace=True)
+    total = df[variable].sum()
+    df['percentage']=(df[variable]/total)
+    df_above_1_per = df[(df['percentage']>0.005) & (df['Country or Area'].isna()==False)]
+    df_other = df[(df['percentage']<0.005) | df['Country or Area'].isna()]
+    df_new = df_above_1_per
+    df_new.loc[len(df_new)]={'Country or Area':"Other",variable:df_other[variable].sum(),'percentage':df_other['percentage'].sum()}
+
+    return df_new
+
 def pie_chart(data,variable):
     title=variable
     # title = create_title(data,variable)
-    df = data[['Country or Area', variable]]
-    df.sort_values(by=variable, ascending = False,inplace=True)
-    
-    # data = data[data[category]!='United Kingdom']
+    df = reduce_data(data,variable)
     chart = alt.Chart(df,title=alt.Title(title,anchor='start')).mark_arc().encode(
         theta=alt.Theta(field=variable, type="quantitative"),
         color = alt.Color('Country or Area').legend(orient="left") ,
