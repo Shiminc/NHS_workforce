@@ -65,6 +65,32 @@ export const drawMap = (geodata) =>{
         .style('left',`${width/3}px`)
         .text(`${max_value.toFixed(0)}`)
 
+    const legend_label_explainer= legend.append('xhtml:div')
+        .attr('class','legend-label-explainer')
+        .style('height', '20px')
+        .style('width', '100px')
+    
+    
+    legend_label_explainer.append('span')
+        .style('position','absolute')
+        .style('left',`${(width/6)/2}px`)
+        .text('25th percentile')
+    
+
+    legend_label_explainer.append('span')
+        .style('position','absolute')
+        .style('left',`${(width/6)}px`)
+        .text('50th percentile')
+
+    legend_label_explainer.append('span')
+        .style('position','absolute')
+        .style('left',`${(width/6)/2*3}px`)
+        .text('75th percentile')
+
+    legend_label_explainer.append('span')
+        .style('position','absolute')
+        .style('left',`${width/3}px`)
+        .text('100th percentile')
 
     svg.selectAll('.country-path')
     .data(geodata.features)

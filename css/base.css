@@ -63,6 +63,12 @@ body{
     line-height: 1.5;
 }
 
+.legend-label-explainer{
+    font-family: 'Roboto', sans-serif;
+    font-size: 6px; 
+
+}
+
 .legend-label{
     font-family: 'Roboto', sans-serif;
     font-size: 10px; 
