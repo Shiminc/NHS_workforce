@@ -4,11 +4,12 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import numpy as np
 import pandas as pd
 import altair as alt
+import json
 from utils.data import load_full_data
 from utils.eda_plot import set_up_altair_browser
-
-VARIABLES_TOTAL = ['All staff total','Professional qualified total','HCHS doctors - All grades',
-             'Non doctor clinical staff total', 'Support staff total','Support to clinical staff total','Infrastructure support total']
+# 'All staff total','Professional qualified total','Support staff total'
+VARIABLES_TOTAL = ['HCHS doctors - All grades',
+             'Non doctor clinical staff total','Support to clinical staff total','Infrastructure support total']
 
 VARIABLES_DOCTORS = ['All grades','Consultant','Associate Specialist','Specialty Doctor'
 ,'Staff Grade'
@@ -33,15 +34,37 @@ VARIABLES_SUPPORT = [
 
 def reduce_data(data,variable):
     df = data[['Country or Area', variable]]
-    df.sort_values(by=variable, ascending = False,inplace=True)
     total = df[variable].sum()
     df['percentage']=(df[variable]/total)
     df_above_1_per = df[(df['percentage']>0.005) & (df['Country or Area'].isna()==False)]
     df_other = df[(df['percentage']<0.005) | df['Country or Area'].isna()]
     df_new = df_above_1_per
-    df_new.loc[len(df_new)]={'Country or Area':"Other",variable:df_other[variable].sum(),'percentage':df_other['percentage'].sum()}
+    df_new.sort_values(by=variable, ascending = False,inplace=True)
 
+    df_new.loc[len(df_new)]={'Country or Area':"Other",variable:round(df_other[variable].sum(),2),'percentage':df_other['percentage'].sum()}
     return df_new
+
+def create_full_chart_data(data,variables):
+    dict_list = []
+    for variable in variables:
+        df = reduce_data(data,variable)
+        dict = create_dict(df, variable)
+        dict_list.append(dict)
+
+    return dict_list
+
+def create_dict(df,variable):
+    dict = {'staff': variable}
+    dict['total']=round(df[variable].sum(),2)
+    dict['data']=[]
+    df_other = df[df['Country or Area']=='Other'] 
+    df = df[df['Country or Area']!='Other'] 
+    df.sort_values(by=variable,ascending=False,inplace=True)
+    df = pd.concat([df,df_other])
+    for index, row in df.iterrows():
+        dict['data'].append({'Country or Area':row['Country or Area'],'number':row[variable]})            
+    
+    return dict
 
 def pie_chart(data,variable):
     title=variable
@@ -76,6 +99,11 @@ def calculate_percentage(data,VARIABLES_TOTAL):
 def main():
     set_up_altair_browser()
     data = load_full_data()
+    json_list = create_full_chart_data(data,VARIABLES_TOTAL)
+    with open('marimekko_data.json','w') as file:
+        json.dump(json_list,file)
+
+
     multiple_pie_chart(data,VARIABLES_TOTAL).show()
     df = calculate_percentage(data,VARIABLES_TOTAL)
     print('finish')

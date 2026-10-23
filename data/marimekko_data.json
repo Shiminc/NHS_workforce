@@ -1,0 +1,69 @@
+[
+  {
+    "staff": "HCHS doctors - All grades",
+    "total": 151413.44,
+    "data": [
+      { "Country or Area": "United Kingdom", "number": 95113.22 },
+      { "Country or Area": "India", "number": 12781.89 },
+      { "Country or Area": "Pakistan", "number": 6451.84 },
+      { "Country or Area": "Egypt", "number": 4517.54 },
+      { "Country or Area": "Nigeria", "number": 3580.37 },
+      { "Country or Area": "Malaysia", "number": 2441.87 },
+      { "Country or Area": "Ireland", "number": 2349.67 },
+      { "Country or Area": "Sri Lanka", "number": 1840.66 },
+      { "Country or Area": "Sudan", "number": 1574.65 },
+      { "Country or Area": "Bangladesh", "number": 1220.92 },
+      { "Country or Area": "Italy", "number": 1191.41 },
+      { "Country or Area": "Myanmar", "number": 957.29 },
+      { "Country or Area": "Other", "number": 17392.11 }
+    ]
+  },
+  {
+    "staff": "Non doctor clinical staff total",
+    "total": 602866.21,
+    "data": [
+      { "Country or Area": "United Kingdom", "number": 445535.45 },
+      { "Country or Area": "India", "number": 47174.53 },
+      { "Country or Area": "Philippines", "number": 26843.72 },
+      { "Country or Area": "Nigeria", "number": 16110.22 },
+      { "Country or Area": "Ireland", "number": 7064.98 },
+      { "Country or Area": "Ghana", "number": 4850.04 },
+      { "Country or Area": "Zimbabwe", "number": 4336.1 },
+      { "Country or Area": "Portugal", "number": 4005.88 },
+      { "Country or Area": "Italy", "number": 3417.37 },
+      { "Country or Area": "Poland", "number": 3416.53 },
+      { "Country or Area": "Other", "number": 40111.39 }
+    ]
+  },
+  {
+    "staff": "Support to clinical staff total",
+    "total": 402575.68,
+    "data": [
+      { "Country or Area": "United Kingdom", "number": 317912.85 },
+      { "Country or Area": "Nigeria", "number": 21033.83 },
+      { "Country or Area": "India", "number": 14605.55 },
+      { "Country or Area": "Philippines", "number": 5090.79 },
+      { "Country or Area": "Poland", "number": 4475.31 },
+      { "Country or Area": "Ghana", "number": 3770.42 },
+      { "Country or Area": "Portugal", "number": 2276.42 },
+      { "Country or Area": "Romania", "number": 2124.03 },
+      { "Country or Area": "Other", "number": 31286.48 }
+    ]
+  },
+  {
+    "staff": "Infrastructure support total",
+    "total": 211732.48,
+    "data": [
+      { "Country or Area": "United Kingdom", "number": 180119.79 },
+      { "Country or Area": "India", "number": 4820.76 },
+      { "Country or Area": "Nigeria", "number": 3224.69 },
+      { "Country or Area": "Poland", "number": 2745.68 },
+      { "Country or Area": "Portugal", "number": 1563.41 },
+      { "Country or Area": "Philippines", "number": 1269.16 },
+      { "Country or Area": "Ghana", "number": 1191.92 },
+      { "Country or Area": "Ireland", "number": 1181.19 },
+      { "Country or Area": "Italy", "number": 1126.35 },
+      { "Country or Area": "Other", "number": 14489.53 }
+    ]
+  }
+]

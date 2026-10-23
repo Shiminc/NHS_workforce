@@ -145,7 +145,9 @@ export function showBreakDown(e,d){
         if (d.depth >=0 & d.depth <3) return 'white'
         else return 'black'})
     .attr('font-family','sans-serif')
-    .attr('font-size','6px')
+    .attr('font-size',d=>{
+        if (d.depth ==3) return '4px'
+        else return '6px'})
 
     label.append('tspan')
     .attr('opacity',d=>{

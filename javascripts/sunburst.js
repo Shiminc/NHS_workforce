@@ -3,8 +3,8 @@ import {colorScale,colorScaleFurther } from './color-data.js'
 export const drawSunburst = (root) => {
     
   
-    const width = 200;
-    const height = 200;
+    const width = 250;
+    const height = 250;
     const radius = Math.min(width,height) / 2;
 
     console.log('radius')

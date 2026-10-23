@@ -3,6 +3,7 @@ import {csvToHierarchy} from './tranform-data.js';
 import {drawSunburst} from './sunburst.js';
 import {drawTree} from './tree-chart.js';
 import {drawMap} from './world-map.js';
+import {drawMarimekko} from './marimekko.js';
 
 function dataConverter (data) {
   data.forEach(d=> {
@@ -30,5 +31,15 @@ d3.json("./data/geodata_updated.json")
   console.log('earth')
   console.log(data)
   drawMap(data)
+})
+.catch(error => console.log(error));
+
+
+
+d3.json("./data/marimekko_data.json")
+.then(data => {
+  console.log('marimekko')
+  console.log(data)
+  drawMarimekko(data)
 })
 .catch(error => console.log(error));

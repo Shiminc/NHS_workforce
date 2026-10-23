@@ -38,9 +38,11 @@ body{
 .title{
     font-family: 'Roboto', sans-serif;
     font-size: 40px; 
-    margin: 0 auto;
+    margin: 0 5%;
     display: relative;
     width: fit-content;
+    justify-content: center;
+
 }
 
 .subtitle{
@@ -49,6 +51,8 @@ body{
     margin: 0 auto;
     display: relative;
     width: fit-content;
+    justify-content: center;
+
 }
 
 .intro{
@@ -91,5 +95,6 @@ li {
 
 
 #map-chart {
+    margin: 0 5%;
     overflow: hidden;
 }

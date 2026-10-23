@@ -53,8 +53,9 @@ export function showToolTip(e,d){
 
         textContainer.append('tspan')
         .attr('class','numbers')
+        .attr('dominant-baseline','hanging')
         .attr('x',centroid[0])
-        .attr('dy','1.4em')
+        .attr('dy','1.6em')
         .text(d['All staff total'])
 
             //get the dimension of the rect-background based on the space text takes on
