@@ -7,8 +7,8 @@ export const drawSunburst = (root) => {
     const height = 250;
     const radius = Math.min(width,height) / 2;
 
-    console.log('radius')
-    console.log(radius)
+    console.log('root')
+    console.log(root)
     const root_sun = root
     root_sun.sum(d=>d.staff_numbers)
     root_sun.sort((a,b)=>b.value-a.value)
@@ -22,8 +22,8 @@ export const drawSunburst = (root) => {
     const radialPartition = d3.partition()
              .size([2*Math.PI,radius])
     const root_graph = radialPartition(root_sun)
-    console.log('root_graph')
-    console.log(root_graph)
+    console.log('root_graph_descendants')
+    console.log(root_graph.descendants())
     // x0 = starting angle in radians
     // x1 = ending angle in radians
     // y0 = inner radius
@@ -52,16 +52,6 @@ export const drawSunburst = (root) => {
     .data(root_graph.descendants())  // <-- 2
     .join('path')  // <-- 4
     .attr("d", arcGenerator)  // <-- 6
-    // .attr('fill',d=>{
-    //             switch (d.depth){
-    //                 case 1:
-    //                   return colorScale(d.id)
-    //                 case 2:
-    //                   return d3.interpolate(colorScale(d.parent.id),'white')(0.5)
-    //                 default:
-    //                     return "white"
-    //             }
-    //     })
     .attr('fill',d=>{
                 switch (d.depth){
                     case 1:

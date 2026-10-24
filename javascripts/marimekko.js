@@ -38,7 +38,7 @@ export function showToolTip(e,d){
         const textContainer = d3.select('#marimekko-svg-g').append('text')
         .attr('id','toolTip-text')
         .attr('x',d.x0 + 2)
-        .attr('y',parseFloat(position_y) + 10)
+        .attr('y',parseFloat(position_y) + 2)
         .attr('font-size',10)
         .attr('font-family', 'sans-serif')
         .attr('dominant-baseline','hanging')
@@ -49,7 +49,7 @@ export function showToolTip(e,d){
 
         textContainer.append('tspan')
         .attr('x',d.x0 + 2)
-        .attr('dy','1.6em')
+        .attr('dy','1.3em')
         .text(`${(d['proportion']*100).toFixed(2)}%`)
 
 
@@ -57,9 +57,9 @@ export function showToolTip(e,d){
         let box = text.getBBox();
         rectBackground.attr('id','toolTip-background')
         .attr('x',d.x0)
-        .attr('y',parseFloat(position_y)+7)
-        .attr("width", box.width + 6)
-        .attr("height", box.height + 6)
+        .attr('y',parseFloat(position_y)+1)
+        .attr("width", box.width + 3)
+        .attr("height", box.height)
         .style("fill","white")
         .attr('fill-opacity',1)
     }
@@ -67,12 +67,12 @@ export function showToolTip(e,d){
 
 export const drawMarimekko = (data) =>{
     const width = 1000;
-    const height = 800;
+    const height = 400;
     const margin = {
         top: 20, 
         right: 50,
         bottom: 20, 
-        left: 50
+        left: 250
     }
     const innerWidth = width - margin.right - margin.left;
     const innerHeight = height - margin.top - margin.bottom;
@@ -125,15 +125,18 @@ export const drawMarimekko = (data) =>{
                 .on('mouseleave',hideToolTip)
 
         svg.append('text')
-                .attr('x',20)
+                .attr('x',-20)
                 .attr('y',staff_type.y0 +20)
-                .text(`${renameScale(staff_type.staff)}: ${staff_type.total}`)
+                // .text(`${renameScale(staff_type.staff)}: ${staff_type.total}`)
+                .text(`${renameScale(staff_type.staff)}`)
                 .style('dominant-baseline','hanging')
                 .attr('font-family','sans-serif')
-                .attr('font-size','25px')
+                .attr('font-size','15px')
+                .attr('text-anchor','end')
+
         svg.append('text')
                 .attr('x',20)
-                .attr('y',staff_type.y0 + 50)
+                .attr('y',staff_type.y0 + 20)
                 .text(`${(uk_number.proportion*100).toFixed(2)}% from United Kingdom`)
                 .style('dominant-baseline','hanging')
                 .attr('font-family','sans-serif')
