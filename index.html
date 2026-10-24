@@ -6,6 +6,8 @@
 	<title>NHS workforce</title>
 	<link rel="stylesheet" type="text/css" href="./css/base.css">
 	<link rel="stylesheet" href="./css/logo.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+
     <link rel="icon" href="./assets/favicon.PNG" type="image/x-icon" />
 </head>
 <body>
@@ -14,12 +16,14 @@
         <div class = 'grid-about'><a href='https://shiminc.github.io/vizard/about.html'>About</a></div>
 
     </div>
+	
 	<div class="normal-container">
 		<div class="title">Who works in NHS for our health?</div>
-		<div class="subtitle">Work in progress</div>
+		<div class="subtitle">Their role and where they are from</div>
 		
 		<div class=" intro">
-
+		<p>NHS is one of the biggest employers in the UK and plays an important role in ensuring all of us in the UK is well and sound. Most of the time, when using the service of the health systems, we might be interacting with clinical staff and admin staff, and not knowing what their roles are in the system. Meanwhile, there are also other staff working behind-the-scenes. So it would be worth getting to know who are working in the NHS to support our health to better appreciate them. </p>
+		<p></p>
 			</div>
 			<div class="plot-grid-container">
 
@@ -35,7 +39,15 @@
 
 		    <div id="map-chart"></div>
 			<div id="marimekko-chart"></div>
-	
+	<h4>Methodology</h4>
+        <ul>
+			<li>This piece was completed also for the purpose of practicing creating some less common visualisation in D3. </li>
+			<li>Code repository: https://github.com/Shiminc/NHS_workforce</li>
+            <li>NHS workforce data: https://digital.nhs.uk/data-and-information/publications/statistical/nhs-workforce-statistics
+            <li>You could reach me at shiminc@gmail.com. </li>
+        </ul>
+
+	</div>
 	<!-- Load javascripts -->
 	
 	<script src="./javascripts/d3.v7.js"></script>
@@ -51,5 +63,7 @@
             window.location.href ='https://shiminc.github.io/vizard'
         })
 </script>
+
+
 </body>
 </html>
