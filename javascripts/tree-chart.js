@@ -2,12 +2,12 @@ import {colorScaleFurther} from './color-data.js'
 
 export const drawTree = (root, descendants, leaves) => {
     const width = 2000;
-    const height = 1600;
+    const height = 750;
     const margin = {
-        top: 200, 
+        top: 20, 
         right: 800,
-        bottom: 200, 
-        left: 400
+        bottom: 20, 
+        left: 500
     }
     const innerWidth = width - margin.right - margin.left;
     const innerHeight = height - margin.top - margin.bottom;

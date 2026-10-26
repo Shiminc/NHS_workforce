@@ -75,6 +75,7 @@ def correct_nationality_area(data):
     {'Nationality':'Uzbekistani','id_code': 'UZ', 'Name': 'Uzbekistan'},
     {'Nationality':'Namibian','id_code': 'NA', 'Name': 'Namibia'},
     {'Nationality':'Uzbekistani','id_code': 'UZ', 'Name': 'Uzbekistan'},
+    {'Nationality':'Dominican','id_code': 'DO', 'Name': 'Dominican Republic'},
     {'Nationality':'Virgin Islander', 'id_code': 'VI', 'Name': 'United States Virgin Islands','Territory':'United States'},
     ])
     

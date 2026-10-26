@@ -22,22 +22,35 @@
 		<div class="subtitle">Their role and where they are from</div>
 		
 		<div class=" intro">
-		<p>NHS is one of the biggest employers in the UK and plays an important role in ensuring all of us in the UK is well and sound. Most of the time, when using the service of the health systems, we might be interacting with clinical staff and admin staff, and not knowing what their roles are in the system. Meanwhile, there are also other staff working behind-the-scenes. So it would be worth getting to know who are working in the NHS to support our health to better appreciate them. </p>
-		<p></p>
+		<p>NHS is one of the biggest employers in the UK and plays an important role in ensuring all of us in the UK is well and sound. Most of the time, when using the service of the health systems, we might be most likely interacting with clinical staff and admin staff, but also not knowing what their roles are in the system. Meanwhile, there are also other staff working behind-the-scenes. So it is worth getting to know who are working in the NHS to support our health to better appreciate them. </p>
+		<p>In the following, I explore the published data of <a href=https://digital.nhs.uk/data-and-information/publications/statistical/nhs-workforce-statistics>NHS Workforce Statistics - June 2026</a>, which shows monthly numbers of NHS Hospital and Community Health Services (HCHS) staff (excluding primary care staff, e.g., GP). Specifically I look at the data from two angles: the staff role and the nationality. The number used is full-time equivalent (FTE) rather than headcount as FTE is a better representation of workforce. </p>
+		<p>This exploration is more for understanding NHS workforce and practicing visualisation, rather than drawing any analytics implication. </p>
 			</div>
-			<div class="plot-grid-container">
 
-				<div class="chart-container">
+			<h3>Different roles in NHS</h3>
+				<p>The tree chart below shows an overview of the different roles in an organisation structure, with the bar besides each role showing the number of staff. In total, there are 1370442 FTE, with <b>nurses & health visitors</b>, and <b>support to doctors, nurses & midwives</b> being the majority group of staff. 
+				</p>
+				<p></p>
+					<div class="chart-container">
 					<div id="tree-chart"></div>
 				</div>
+				<p>To further examine the proportion of staff in each level of breakdown, I also create a sunburst chart with multiple rings representing each level of breakdown and branch in the tree chart above. By looking at the inner ring, we could see that there are 55.2% professionally qualified clinical staff and 44.8% support staff in NHS. The second ring could be an level which is most parsimonious to understand the various roles in NHS. In this ring, we could see that <b>doctors actually only constitute minority of staff.</b> 
+				 The other ring corresponds to each specific role, and we could see the majority group of staff in each function based on the inner ring. The percentage shown is calculated based on their grouping, for example, 40.2% of doctors are consultant, while doctors are 20.2% of all professionally qualified clinical staff.  
+				</p>
+
 				<div class="chart-container">
 					<div id="sunburst-chart"></div>
 				</div>
-			
 
-			</div>
+			<h3>Where do NHS staff originally come from? </h3>
+				<p>A choropleth map showing the number of staff from each country or area with darkest indicating highest number and white none easily shows that NHS staff almost come from everywhere in the world, excep the Western Sahara, which is coloured white in the map. There are other white areas, such as The Republic of Congo, Democratic Republic of the Congo, Dominican Republic and Dominica. They are coloured white because it is undetermined if the 258 Congoleses and 26 Dominicans recorded in the data are from which of the two countries with similar names for their citizens. There are also 9 indications of Dutch Antillean and 26 Koreans, which are undetermined, so excluded from the mapping below. The nationality is self-reported so may not necessarily follow the official definition.     
+				</p>
+
+				<p>Majority of staff come from United Kingdom, indicated by the darkest blue, followed by <b>India and Nigeria</b>. You could hover over in the map to see the number of staff from each country or area. You could also double click each area or country to be shown a sunburst chart similar to above to show the staff breakdown from a particular country or area. For example, a large number of staff from India are clinical staff, whereas from Nigeri are support staff. As news report sometimes highlight, most staff coming from Philipines are nurses & health visitors. In contrast, staff from Myammar and Malaysia are mainly doctors. </p>
 
 		    <div id="map-chart"></div>
+			<p>To have a quick view of the nationality of each staff group, the following marimekko chart shows the breakdown, with the height of each horizontal bar corresponding to the proportion of the staff group indicated on the left, while the breakdown in each horizontal bar indicated the country of origin with more than 0.5% staff in the staff group, the rest of the countries are grouped into  <span style = "background-color:#c7c7c7">Other</span>, while United Kingdom is the majority for each staff group, coloured in white. You could move cursor over each colour bar to see the country. </p>
+			<p>It seems the nationality of doctors is more diverse compared to other staff group, while India and Nigeria contributed to all four staff groups, Philippines, Poland, Portugal and Ghana also contributed many staffs across the groups except doctors. </p>
 			<div id="marimekko-chart"></div>
 	<h4>Methodology</h4>
         <ul>

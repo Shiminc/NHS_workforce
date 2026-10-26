@@ -2,7 +2,7 @@
 export const width = 1230*0.8
 export const height = 620*0.8
 export const margin_top = 200/2
-export const margin_bottom = 200
+export const margin_bottom = 100
 
 export const projection = d3.geoEqualEarth()
         .translate([width/2,height/2])
