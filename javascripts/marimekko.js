@@ -72,7 +72,7 @@ export const drawMarimekko = (data) =>{
         top: 20, 
         right: 50,
         bottom: 20, 
-        left: 250
+        left: 180
     }
     const innerWidth = width - margin.right - margin.left;
     const innerHeight = height - margin.top - margin.bottom;

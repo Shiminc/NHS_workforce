@@ -15,21 +15,7 @@ export const drawMap = (geodata) =>{
         .attr('id','svg-map-g')
         
     draw_graticules(svg)
-    //interactive instructions
-    const instructions = d3.select('#svg-map').append('foreignObject')
-        .attr('x',0)
-        .attr('y',0)
-        .attr('width', width)
-        .attr('height', 150)
 
-    instructions.append('xhtml:div')
-        .style('height', '20px')
-        .text('Mouse over (or click if on mobile device) to see the number of staff from each country or area.')
-
-    instructions.append('xhtml:div')
-        .style('height', '20px')
-        .text('Double click to see the sunburst popup of breakdown of staff in each country or area, move cursor away (or double click if on mobile device) to remove the pop ')
-     
     // legend
     const legend = d3.select('#svg-map').append('foreignObject')
         .attr('x',margin_top)
